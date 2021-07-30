@@ -1,0 +1,67 @@
+
+.desktop-c{
+   margin-top:5%;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    
+}
+.mobile-c{
+     margin-top:10%;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+     
+ }
+
+
+.container-fluid{
+    width: 65%;
+    margin: 20px auto;
+    margin-bottom: 10%;
+}
+.row{
+   margin-top: 7%;
+}
+
+
+ .card {
+    background-color: rgba(0,0,0,0) ;
+}
+.card img{
+   
+}
+
+.col-sm-2:hover{
+    -webkit-transform: scale(1.1,1.1);
+}
+.col-sm-2:hover .carousel-caption{
+    opacity: 1;
+}
+.carousel-caption{
+    opacity: 0;
+    bottom:0;
+    left:9%;
+    right:9%;
+    height:60%;
+    background-image: linear-gradient(0deg,black 40%,rgba(0,0,0,0) );
+    
+}
+
+.text{
+    margin-top: 10%;
+    height: 100%;
+    width:93%;
+    left:7%;
+    text-align: left;
+    display: flex;
+}
+.text p{
+    
+    align-self: flex-end;
+   
+    padding-left:7%;
+    font-size: 70%;
+
+    
+}

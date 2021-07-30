@@ -1,0 +1,124 @@
+<div id = "white">
+
+</div>
+<div *ngIf="desktop" class="desktop-c">
+<ngb-carousel [interval]="5000" *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper" [routerLink]="['/watch',type,ids[0]]">
+        <img [src]="images[0]" alt="Random first slide">
+        <div class="carousel-caption">
+          <div class="text">
+          <p>{{TrendingM[0].name}}</p>
+          </div>
+        </div>
+      </div>
+      
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper" [routerLink]="['/watch',type,ids[1]]">
+        <img [src]="images[1]" alt="Random first slide">
+        <div class="carousel-caption">
+          <div class="text">
+          <p>{{TrendingM[1].name}}</p>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper" [routerLink]="['/watch',type,ids[2]]">
+        <img [src]="images[2]" alt="Random third slide">
+        <div class="carousel-caption">
+          <div class="text">
+            <p>{{TrendingM[2].name}}</p>
+            </div>
+        </div>
+      </div>
+      
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper" [routerLink]="['/watch',type,ids[3]]">
+        <img [src]="images[3]" alt="Random first slide">
+        <div class="carousel-caption">
+          <div class="text">
+           <p> {{TrendingM[3].name}}</p>
+            </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper" [routerLink]="['/watch',type,ids[4]]">
+        <img [src]="images[4]" alt="Random first slide">
+        <div class="carousel-caption">
+          <div class="text">
+            <p>{{TrendingM[4].name}}</p>
+            </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+
+
+<div *ngIf="mobile" class="mobile-c">
+<ngb-carousel [interval]="5000" *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[0]" alt="Random first slide" [routerLink]="['/watch',type,ids[0]]">
+      </div>
+      <div class="carousel-caption" style="opacity: 1;">
+        <div class="text">
+        <p>{{TrendingM[0].name}}</p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[1]" alt="Random first slide" [routerLink]="['/watch',type,ids[1]]">
+      </div>
+      <div class="carousel-caption" style="opacity: 1;">
+        <div class="text">
+        <p>{{TrendingM[1].name}}</p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[2]" alt="Random third slide" [routerLink]="['/watch',type,ids[2]]">
+      </div>
+      <div class="carousel-caption" style="opacity: 1;">
+        <div class="text">
+          <p>{{TrendingM[2].name}}</p>
+          </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[3]" alt="Random first slide" [routerLink]="['/watch',type,ids[3]]">
+      </div>
+      <div class="carousel-caption" style="opacity: 1;">
+        <div class="text">
+         <p> {{TrendingM[3].name}}</p>
+          </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[4]" alt="Random first slide" [routerLink]="['/watch',type,ids[4]]">
+      </div>
+      <div class="carousel-caption" style="opacity: 1;">
+        <div class="text">
+          <p>{{TrendingM[4].name}}</p>
+          </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+  <app-continue-watch></app-continue-watch>
+  <app-popular-movies></app-popular-movies>
+  <app-top-movies></app-top-movies>
+  <app-trending-carousel></app-trending-carousel>
+  <app-popular-tvs></app-popular-tvs>
+  <app-top-tvs></app-top-tvs>
+  <app-trending-tvs></app-trending-tvs>
+  

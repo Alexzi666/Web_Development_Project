@@ -1,0 +1,94 @@
+ <nav class="navbar navbar-expand-lg navbar-dark static-top" style="background-color:#000429">
+      <a class="navbar-brand ml-5" href="#" >Alex WebDev Project</a>
+      <button class="navbar-toggler mr-4" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active mr-4" *ngIf="desktop">
+            <a class="nav-link" aria-current="page" routerLink='/' routerLinkActive="actvie">Home Page<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item mr-4" *ngIf="mobile">
+          <a class="nav-link"  style="text-align: right;font-weight:normal" aria-current="page" routerLink='/' routerLinkActive="actvie">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item mr-4"> 
+            <a *ngIf="desktop" class="nav-link" routerLink="/mylist" routerLinkActive="active">My Movie List</a>
+            <a *ngIf="mobile" class="nav-link" style="text-align: right;" routerLink="/mylist" routerLinkActive="active">My List</a>
+          </li>
+        </ul>    
+        <form class="form-inline my-2 my-lg-0 mr-lg-3 ml-4">
+          <ng-template #rt let-r="result" let-t="term">
+          <img [src]="r.backdrop_path" class="mr-1" style="width: 55px;height:30px">
+          <ngb-highlight style="color:white" [result]="r.name" [term]="t"></ngb-highlight>
+          </ng-template>  
+          <input id="searchMT" type="text"
+          #input
+          name="model"
+          (selectItem)="selectedItem($event,input)"
+          class="form-control"                     
+          [(ngModel)]="model"
+          [ngbTypeahead]="search"                     
+          placeholder=" Search"
+          [resultTemplate]="rt"
+          [inputFormatter]="inputFormatBandListValue"
+          #instance="ngbTypeahead"                     
+          />
+       </form>
+      </div>
+  </nav>
+
+<router-outlet></router-outlet>
+
+
+<footer class="page-footer font-small blue pt-4">
+
+    
+    <div class="container-fluid text-center text-md-left">
+
+      
+      <div class="row">
+
+        
+        <div class="col-md-6 mt-md-0 mt-3">
+
+          
+          <h5 class="text-uppercase">Thanks for viewing</h5>
+          <p>Developed by Bingjie(Alex) Zi </p>
+
+        </div>
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <div class="col-md-4 mb-md-0 mb-3">
+            <h5 class="text-unstyled"> My Links</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <a href="https://www.linkedin.com/in/bingjie-alex-zi-ba196a18a/">Linkedin</a>
+              </li>
+              <li>
+                <a href="https://github.com/Alexzi666?tab=repositories">Github</a>
+              </li>
+            </ul>
+
+          </div>
+
+      </div>
+
+
+    </div>
+
+    <div class="footer-copyright text-center py-3">Powered by TMDB
+      <a href="https://mdbootstrap.com/"> developers.themoviedb.org</a>
+    </div>
+    <p>Contact Email: alexzi13703@gmail.com</p>
+
+</footer>
+  
+
+
+
+
+
+
+  

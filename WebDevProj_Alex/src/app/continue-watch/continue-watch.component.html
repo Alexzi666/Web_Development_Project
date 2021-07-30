@@ -1,0 +1,39 @@
+<div *ngIf="desktop" class="desktop-c">
+<div class="cap" *ngIf="isEmpty==false">
+    <h1>Continue Watching</h1>
+</div>
+
+<ngb-carousel [interval]="0" *ngIf="isEmpty==false">
+      <ng-template ngbSlide *ngFor="let items of all;">
+        <div class="row">
+        <div class="col-sm-2" *ngFor="let item of items;" [routerLink]="['/watch',item.type,item.id]">
+          <img [src]="item.poster_path" alt="Random first slide">
+            <div class="carousel-caption">
+              <div class="text">
+                <p>{{item.name}}</p>
+              </div>
+            </div>
+        </div> 
+        </div>
+      </ng-template>
+</ngb-carousel>
+</div>
+
+<div *ngIf="mobile" class="mobile-c">
+<div class="cap" style="margin-bottom: 7%;" *ngIf="isEmpty==false">
+  <h1>Continue Watching</h1>
+</div>
+<ngb-carousel [interval]="0" *ngIf="isEmpty==false" style="width: 55%; max-height: 300px;margin:20px auto;">
+    <ng-template ngbSlide *ngFor="let item of all_mobile;">
+      <div class="picsum-img-wrapper my-1" style="max-height:320px;" [routerLink]="['/watch',item.type,item.id]">
+        <img [src]="item.poster_path" style="height:100%;width:95%" alt="Random first slide">
+          <div class="carousel-caption" style="opacity:1;height:50%;background-image: linear-gradient(0deg,black 35%,rgba(0,0,0,0) );left:0;right:5%;">
+            <div class="text" style="left:0;right:5%;">
+              <p class="mb-1">{{item.name}}</p>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+</ngb-carousel>
+
+</div>

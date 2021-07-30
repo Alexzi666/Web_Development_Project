@@ -1,0 +1,285 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container" *ngIf="desktop">
+    <div class='row'>
+        <div class="embed-responsive embed-responsive-16by9 col-sm-6">
+            <youtube-player [videoId]="videoID" ></youtube-player>
+        </div>
+        <div class = "Intro col-sm-6">
+            <div class="ml-4">
+            <h1>{{name}}</h1>
+            <p style="font-style: italic;">{{tagline}}</p>
+            <p *ngIf="hour>0">{{release_date}} | &#9733; {{vote_average}} | {{hour}}hrs {{min}}mins</p>
+            <p>Genres: {{genres}}</p>
+            <p>Spoken Language: {{spoken_languages}}</p>
+            <button class="addMe py-2" (click)="addTo()" *ngIf="status!=true">Add to Watchlist</button>
+            <button class="removeMe py-2" (click)="removeFrom()" *ngIf="status==true">Remove from Watchlist</button>
+            <ngb-alert class="mt-2" *ngIf="aler1_boolean" type="success" (closed)="close(alert1)">{{ alert1 }}</ngb-alert>
+            <ngb-alert class="mt-2" *ngIf="aler2_boolean" type="danger" (closed)="close(alert2)">{{ alert2 }}</ngb-alert>
+        </div>
+       </div>
+    </div>
+    <div class = "row" *ngIf = "overview">
+        <h5 class="col-sm-11 mt-3"  style="left:-1%">Description</h5>
+    </div>
+    <div *ngIf = "overview" class="row">
+        <p class="col-sm-12"  style="left:-1%">{{overview}}</p>
+    </div>
+    <div class="row"> 
+        <h5 class="col-sm-11 mt-3" style="left:-1%">Share</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-11" style="left:-1%">
+            <a class="twitter-share-button fa fa-twitter"
+             style="background-color: rgba(0,0,0,0);" 
+             [href]="'https://twitter.com/intent/tweet?text='+shareContent+'&url=https://www.youtube.com/watch?v='+videoID+'%0D'+'&hashtags='+hashtags"
+             target="_blank"></a>
+
+            <a class="fa fa-facebook-square" 
+                style="background-color: rgba(0,0,0,0);" 
+                data-href="'https://www.youtube.com/watch?v='+videoID" 
+                target="_blank" 
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{{videoID}}&amp;src=sdkpreparse" >
+            </a> 
+       </div>
+    </div>
+
+    <div class="row" *ngIf="CastData.length>0">
+        <h2 class="col-sm-11 mt-5 mb-3" style="left:-1%">Full Cast and Crew</h2>
+    </div>
+    
+    <div class="row scroll" style="flex-wrap: nowrap;overflow-x: scroll;" *ngIf="CastData.length>0">
+                    <div class="col-sm-2" style="left:-1%" *ngFor="let item of CastData">
+                         <div class="card" style="border-radius: 10px;border:none;" (click)="open(content,item.id)">
+                            <img [src]="item.profile_path" alt="Random first slide" style="border-top-right-radius: 10px;border-top-left-radius: 10px">
+                            <div class="info mt-2 mb-4">
+                                <span style="font-weight: 600;">{{item.name}}</span>
+                                <br>
+                                <span style="font-weight: 800;">AS</span>
+                                <br>
+                                <span>{{item.character}}</span>
+                            </div>
+                        </div>
+                        <div class="mt-2"></div>
+                    </div>
+    </div>
+    <div *ngIf="reviewLength>0">
+    <div class="row">
+        <h2 class="col-sm-11 mt-4" style="left:-1%">Reviews<span style="margin-left:2%;color:rgba(179, 179, 179,0.8)">{{reviewLength}}</span></h2>
+    </div>
+
+    <div class="row mb-4 py-4 reviewBox" *ngFor="let review of reviews">
+            <div class="col-sm-2 avatar">
+                <img class="ml-5 mt-4" [src]="review.avatar_path">
+            </div>
+            <div class="col-sm-9">
+                    <div> 
+                        <h4>A review created by {{review.author}}<span class="py-1 px-2" style="font-weight:light;font-size:18px;background-color:black;color:white;border-radius:25px;margin-left:3%">&#9733; {{review.rating}}</span></h4>
+                        <br>
+                        <span style=color:grey>Written by {{review.author}} on {{review.created_at | date  : 'MMMM d, y, h:mm:ss a' }}</span>
+                        <br>
+                        <span class="review_content">{{review.content}}</span>
+                        <a class="readFull" href="{{review.url}}" target="_blank">Read the Rest</a>
+                    </div>
+            </div>
+    </div>  
+</div>
+</div>
+
+
+<!-- ....mobile.... -->
+
+
+
+<div class="container" *ngIf="mobile">
+    <div class='row'>
+        <div class="embed-responsive embed-responsive-16by9">
+            <youtube-player [videoId]="videoID" ></youtube-player>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class = "Intro">
+            <div>
+            <h1>{{name}}</h1>
+            <p class="mb-3" style="font-style: italic;">{{tagline}}</p>
+            <p *ngIf="hour>0">{{release_date}} | &#9733; {{vote_average}} | {{hour}}hrs {{min}}mins</p>
+            <p>Genres: {{genres}}</p>
+            <p>Spoken Language: {{spoken_languages}}</p>
+            <button class="addMe py-2" style="width:70%" (click)="addTo()" *ngIf="status!=true">Add to Watchlist</button>
+            <button class="removeMe py-2" style="width:80%" (click)="removeFrom()" *ngIf="status==true">Remove from Watchlist</button>
+            <ngb-alert class="mt-2" *ngIf="aler1_boolean" type="success" (closed)="close(alert1)">{{ alert1 }}</ngb-alert>
+            <ngb-alert class="mt-2" *ngIf="aler2_boolean" type="danger" (closed)="close(alert2)">{{ alert2 }}</ngb-alert>
+            </div>
+       </div>
+    </div>
+    <div class = "row" *ngIf="overview">
+        <h5 class="mt-3"  style="left:-4%">Description</h5>
+    </div>
+    <div class="row" *ngIf="overview">
+        <p style="left:-4%;">{{overview}}</p>
+    </div>
+    <div class="row"> 
+        <h5 class="mt-3" style="left:-4%">Share</h5>
+    </div>
+    <div class="row">
+        <div style="left:-4%">
+            <a class="twitter-share-button fa fa-twitter"
+             style="background-color: rgba(0,0,0,0);" 
+             [href]="'https://twitter.com/intent/tweet?text='+shareContent+'&url=https://www.youtube.com/watch?v='+videoID+'%0D'+'&hashtags='+hashtags"
+             target="_blank"></a>
+
+            <a class="fa fa-facebook-square" 
+                style="background-color: rgba(0,0,0,0);" 
+                data-href="'https://www.youtube.com/watch?v='+videoID" 
+                target="_blank" 
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{{videoID}}&amp;src=sdkpreparse" >
+            </a> 
+       </div>
+    </div>
+
+    <div class="row" *ngIf="CastData.length>0">
+        <h2 class="mt-5 mb-3" style="left:-4%">Full Cast and Crew</h2>
+    </div>
+    
+    <div class="row scroll-2" style="flex-wrap: nowrap;overflow-x: scroll;" *ngIf="CastData.length>0">
+                    <div class="col-6" style="left:-4%" *ngFor="let item of CastData">
+                         <div class="card" style="border-radius: 10px;border:none;" (click)="open(content,item.id)">
+                            <img [src]="item.profile_path" alt="Random first slide" style="border-top-right-radius: 10px;border-top-left-radius: 10px;max-height: calc(100vw*0.72)">
+                            <div class="info mt-2 mb-2">
+                                <span style="font-weight: 600;">{{item.name}}</span>
+                                <br>
+                                <span style="font-weight: 800;">AS</span>
+                                <br>
+                                <span>{{item.character}}</span>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+
+    
+<div *ngIf="reviewLength>0">
+    <div class="row pt-4">
+        <h2 style="left:-4%">Reviews<span style="margin-left:4%;color:rgba(179, 179, 179,0.8)">{{reviewLength}}</span></h2>
+    </div>
+    <div class="row mb-4" *ngFor="let review of reviews" style="background-color: white;border-radius: 8px;">
+        <div class="row mb-4" style="height:60px;">
+            <img class="mt-3 mx-5" [src]="review.avatar_path" style="height:100%;border-radius: 50%;margin-left:30%">
+        </div>
+        
+        <div class="row">
+            <h4 class="col-10 ml-4 mb-2" style="color:black">A review created by {{review.author}}</h4>
+            <span style="margin-left:12%;font-weight:light;font-size:18px;background-color:black;color:white;padding:4px 13px;border-radius: 20px;">&#9733; {{review.rating}}</span>
+        </div>
+        <div class="row">
+            <p class="col-10 ml-4 mt-4" style="color:grey">Written by {{review.author}} on {{review.created_at | date  : 'MMMM d, y, h:mm:ss a' }}</p>
+        </div>
+        <div class="row pb-3">
+            <div class="col-10">
+            <span class="review_content ml-4 mb-3" style="color:black">{{review.content}}</span>
+            <a class="readFull ml-4" href="{{review.url}}" target="_blank">Read the Rest</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+</div>
+
+
+
+    
+    
+<app-recommend-movies></app-recommend-movies>
+<app-similar-movies></app-similar-movies>
+<app-recommend-tvs></app-recommend-tvs>
+<app-similar-tvs></app-similar-tvs>
+    
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="color:black">{{CastDetails.name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" *ngIf="desktop">
+        <div class="row">
+            <div class="col-3">
+            <img [src]="CastDetails.profile" style="height:100%;width:100%;"/> 
+            </div>
+            <div class="col-8 ml-2">
+                <span *ngIf="CastDetails.birthday" style="color:black">Birth: {{CastDetails.birthday}}</span>
+                <br *ngIf="CastDetails.birthday">
+                <span  *ngIf="CastDetails.birth_place" style="color:black">Birth Place: {{CastDetails.birth_place}}</span>
+                <br  *ngIf="CastDetails.birth_place">
+                <span *ngIf="CastDetails.gender" style="color:black">Gender: {{CastDetails.gender}}</span>
+                <br *ngIf="CastDetails.gender">
+                <span *ngIf="CastDetails.homepage" style="color:black">Website: {{CastDetails.homepage}}</span>
+                <br *ngIf="CastDetails.homepage">
+                <span *ngIf="CastDetails.known_for_department" style="color:black">Known for: {{CastDetails.known_for_department}}</span>
+                <br *ngIf="CastDetails.known_for_department">
+                <span *ngIf="CastDetails.also_known_as" style="color:black">Also Known as: {{CastDetails.also_known_as}}</span>
+                <br *ngIf="CastDetails.also_known_as">
+                <div style="padding-top: 3%;">
+                    <a *ngIf="imdb" class="fa fa-imdb" href="https://www.imdb.com/name/{{imdb}}" target="_blank" placement="top" ngbPopover="imdb" triggers="mouseenter:mouseleave"></a>
+                    <a *ngIf="instagram" class="fa fa-instagram" href="https://www.instagram.com/{{instagram}}" target="_blank" placement="top" ngbPopover="instagram" triggers="mouseenter:mouseleave"></a>
+                    <a *ngIf="facebook" class="fa fa-facebook-square" href="https://www.facebook.com//" target="_blank" placement="top" ngbPopover="facebook" triggers="mouseenter:mouseleave"></a>
+                    <a *ngIf="twitter" class="fa fa-twitter"
+href="https://www.twitter.com/{{twitter}}" target="_blank" placement="top" ngbPopover="twitter" triggers="mouseenter:mouseleave">
+</a>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="CastDetails.biography">
+            <h3 class="col-sm-12 mt-3" style="color:black;">Biography</h3>
+            <div class="col-sm-12" style="color:black;">
+                {{CastDetails.biography}}
+            </div>
+        </div>
+    </div>
+    <!-- ....mobile modal body -->
+    <div class="modal-body" *ngIf="mobile">
+        <div class="row">
+            <div class="col-sm-3">
+            <img [src]="CastDetails.profile" style="height:100%;width:100%;"/> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <span *ngIf="CastDetails.birthday" style="color:black">Birth: {{CastDetails.birthday}}</span>
+                <br *ngIf="CastDetails.birthday">
+                <span *ngIf="CastDetails.birth_place" style="color:black">Birth Place: {{CastDetails.birth_place}}</span>
+                <br *ngIf="CastDetails.birth_place">
+                <span *ngIf="CastDetails.gender" style="color:black">Gender: {{CastDetails.gender}}</span>
+                <br *ngIf="CastDetails.gender">
+                <span *ngIf="CastDetails.homepage" style="color:black">Website: {{CastDetails.homepage}}</span>
+                <br *ngIf="CastDetails.homepage">
+                <span *ngIf="CastDetails.known_for_department" style="color:black">Known for: {{CastDetails.known_for_department}}</span>
+                <br *ngIf="CastDetails.known_for_department">
+                <span *ngIf="CastDetails.also_known_as" style="color:black">Also Known as: {{CastDetails.also_known_as}}</span>
+                <br *ngIf="CastDetails.also_known_as">
+                <div class="mt-4">
+                    <a *ngIf="imdb" placement="top" ngbTooltip="imdb" class="fa fa-imdb" href="https://www.imdb.com/name/{{imdb}}" target="_blank" placement="top" ngbTooltip="imdb" tooltipClass="my-custom-class"></a>
+                    <a *ngIf="instagram" class="fa fa-instagram" href="https://www.instagram.com/{{instagram}}" target="_blank" placement="top" ngbTooltip="instagram" tooltipClass="my-custom-class"></a>
+                    <a *ngIf="facebook" class="fa fa-facebook-square" href="https://www.facebook.com//" target="_blank"mplacement="top" ngbTooltip="facebook" tooltipClass="my-custom-class"></a>
+                    <a *ngIf="twitter" class="fa fa-twitter"
+href="https://www.twitter.com/{{twitter}}" target="_blank"mplacement="top" ngbTooltip="twitter" tooltipClass="my-custom-class">
+</a>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="CastDetails.biography">
+            <h3 class="col-sm-12 mt-3" style="color:black;">Biography</h3>
+            <div class="col-sm-12" style="color:black;">
+                {{CastDetails.biography}}
+            </div>
+        </div>
+    </div>
+
+   
+</ng-template>
+  
+  <hr>
+  
+  <pre>{{ closeResult }}</pre>

@@ -1,0 +1,45 @@
+.form-inline{
+    max-width: 60%;
+    
+}
+
+.form-inline input{
+    background-color: #000429;
+    border:none;
+    border-radius: 0%;
+    border-bottom:1px solid white;
+    color:white;
+    
+  
+}
+
+#searchMT:focus {
+    box-shadow: none;
+}
+ngb-highlight{
+    margin-left:8px;
+}
+ngb-template img{
+    margin-left:-10%;
+}
+
+.form-inline ::ng-deep .dropdown-menu{
+ background-color: #000740;
+ border:1px solid white;
+ 
+}
+/* .navbar-brand{
+    margin-left: 2%;
+} */
+
+footer{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    background-color:#000429; 
+    color: white;
+    bottom:0;
+   
+}
+

@@ -1,0 +1,38 @@
+<div *ngIf="desktop" class="desktop-c">
+<div class="cap">
+<h1>Trending TV Shows</h1>
+</div>
+<ngb-carousel *ngIf="trendingTImages" [interval]="0">
+    <ng-template ngbSlide *ngFor="let images of trendingTImages;let i=index">
+      <div class="row">
+        <div class="col-sm-2" *ngFor="let image of images;let j=index"[routerLink]="['/watch',type,ids[i][j]]">
+          <img [src]="image" alt="Random first slide">
+            <div class="carousel-caption">
+              <div class="text">
+                <p>{{names[i][j]}}</p>
+              </div>
+            </div>
+        </div> 
+        </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<div *ngIf="mobile" class="mobile-c">
+  <div class="cap mt-2">
+  <h1>Trending TV Shows</h1>
+  </div>
+  <ngb-carousel *ngIf="trendingT" [interval]="0" style="max-height: 300px;width:55%;margin:20px auto;">
+    <ng-template ngbSlide *ngFor="let item of trendingT">
+      <div class="picsum-img-wrapper my-1" style="max-height: 320px;" [routerLink]="['/watch',type,item.id]">
+        <img [src]="item.poster_path" alt="Random first slide" style="height:100%;width:95%">
+          <div class="carousel-caption" style="opacity:1;height:50%;background-image: linear-gradient(0deg,black 35%,rgba(0,0,0,0) );left:0;right:5%;">
+            <div class="text" style="left:0;right:5%;">
+              <p>{{item.name}}</p>
+            </div>
+          </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  </div>
+

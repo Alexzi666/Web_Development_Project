@@ -1,0 +1,40 @@
+<div *ngIf="desktop && isEmpty" class="desktop-c">
+   <p> No Items Found in Watchlist.</p>
+</div>
+
+<div *ngIf="mobile && isEmpty" class="mobile-c">
+       <p> No Items Found in Watchlist.</p>
+</div>
+<div class="container-fluid pb-5" *ngIf="desktop && !isEmpty">
+    <h2>My Watchlist</h2>
+    <div class="row" *ngFor="let details of alldetails">
+        <div class="card col-sm-2" *ngFor="let item of details" [routerLink]="['/watch',item.type,item.id]">
+            
+            <img src={{item.poster_path}}>
+            <div class="carousel-caption">
+                <div class="text">
+                    <p>{{item.name}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container-fluid pb-5" *ngIf="mobile && !isEmpty">
+    <h2>My Watchlist</h2>
+    <div class="row mt-5" *ngFor="let item of readyToshow">
+        <div class="card col-sm-12" [routerLink]="['/watch',item.type,item.id]">
+            <img src={{item.poster_path}}>
+            <div class="carousel-caption" style="opacity:1;left:5%;right:5%">
+                <div class="text">
+                    <p style="margin-top:65%;font-size:80%">{{item.name}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
